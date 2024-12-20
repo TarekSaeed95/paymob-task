@@ -1,9 +1,13 @@
-import { Layout } from "./component"
+import { Layout, Table } from "./component"
+import tableData from './data/table-data.json';
+import { tableHandler } from "./utils";
+
 
 function App() {
-  return <Layout>
-    <h1>App</h1>
-  </Layout>
+  const { headerConfig, tableValues } = tableHandler(tableData)
+  return (<Layout>
+    <Table headersConfig={headerConfig} data={tableValues} />
+  </Layout>)
 }
 
 export default App
