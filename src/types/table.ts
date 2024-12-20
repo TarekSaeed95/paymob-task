@@ -4,3 +4,8 @@ export type HeadersConfig = {
   colSpan?: number
 }[]
 export type TableRowData = (string | Date | number)[]
+export type Direction = 'ascending' | 'descending'
+export type SortConfig = {
+  key: string,
+  direction: Direction
+}

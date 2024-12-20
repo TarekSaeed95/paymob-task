@@ -1,13 +1,29 @@
-import { HeadersConfig, TableRowData } from "../types"
+import { HeadersConfig, SortConfig, TableRowData } from "../types"
 import { format } from 'date-fns';
 import { TableVirtuoso } from 'react-virtuoso'
+import { FaSort } from "react-icons/fa";
 
 type TableProps = {
   headersConfig: HeadersConfig,
   data: TableRowData[]
+  sortConfig?: SortConfig
+  setSortConfig: React.Dispatch<React.SetStateAction<SortConfig | undefined>>
 }
 
-export const Table = ({ headersConfig, data }: TableProps) => {
+export const Table = ({ headersConfig, data, sortConfig, setSortConfig }: TableProps) => {
+  const setSortConfigHandler = (key: string) => {
+    if (key === sortConfig?.key) {
+      return setSortConfig(prev => ({
+        key,
+        direction: prev?.direction === 'ascending' ? 'descending' : 'ascending'
+      }))
+    }
+    setSortConfig({
+      key,
+      direction: 'ascending'
+    })
+  }
+
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
       <TableVirtuoso
@@ -15,7 +31,7 @@ export const Table = ({ headersConfig, data }: TableProps) => {
         data={data}
         fixedHeaderContent={() =>
           <tr className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            {headerGenerator(headersConfig)}
+            {headerGenerator(headersConfig, setSortConfigHandler)}
           </tr>
         }
         itemContent={(index, row) => (
@@ -26,11 +42,14 @@ export const Table = ({ headersConfig, data }: TableProps) => {
   )
 }
 
-const headerGenerator = (headersConfig: HeadersConfig) => {
+const headerGenerator = (headersConfig: HeadersConfig, setSortConfigHandler: (key: string) => void) => {
   return headersConfig.map((header, index) => {
     return (
-      <th key={index} colSpan={header.colSpan} scope="col" className="px-6 py-3">
-        {header.title}
+      <th key={index} colSpan={header.colSpan} scope="col" className="px-6 py-3 ">
+        <div className="flex items-center justify-center gap-2">
+          <p>{header.title}</p>
+          <FaSort className="cursor-pointer" onClick={() => setSortConfigHandler(header.title)} />
+        </div>
       </th>
     )
   })
