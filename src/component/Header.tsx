@@ -1,5 +1,5 @@
 export const Header = () => {
   return (
-    <section className="fixed flex min-h-[67px] w-full items-center justify-between bg-white px-11">Paymob</section>
+    <section className="absolute flex min-h-[67px] w-full items-center justify-between bg-white px-11">Paymob</section>
   )
 }
