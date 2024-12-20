@@ -25,9 +25,9 @@ export const Table = ({ headersConfig, data, sortConfig, setSortConfig }: TableP
   }
 
   return (
-    <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div className="relative shadow-md sm:rounded-lg">
       <TableVirtuoso
-        className="!min-h-screen [&_table]:w-full [&_table]:border-separate [&_table]:!border-spacing-0.5 [&_tbody_tr]:border-b  [&_tbody_tr]:odd:dark:bg-gray-900  [&_tbody_tr]:even:dark:bg-gray-800 [&_tbody_tr]:dark:border-gray-700"
+        className="!min-h-[calc(100vh-3rem)] [&_table]:w-full [&_table]:border-separate [&_table]:!border-spacing-0.5 [&_tbody_tr]:border-b  [&_tbody_tr]:odd:dark:bg-gray-900  [&_tbody_tr]:even:dark:bg-gray-800 [&_tbody_tr]:dark:border-gray-700"
         data={data}
         fixedHeaderContent={() =>
           <tr className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">

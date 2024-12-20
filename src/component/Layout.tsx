@@ -10,7 +10,7 @@ export const Layout: FC<LayoutProps> = ({ classNames, children }) => {
   return (
     <main className={twMerge('min-h-screen bg-black ', classNames)}>
       <Header />
-      <div className="w-full mx-auto pt-[67px]">
+      <div className="w-full pt-12 mx-auto">
         {children}
       </div>
     </main>
